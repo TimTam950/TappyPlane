@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Tappy
+
 @onready var anim_sprite: AnimatedSprite2D = $AnimSprite
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
@@ -12,10 +14,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	
-	print(velocity)
-	
+func _physics_process(delta: float) -> void:	
 	# acceleration due to gravity
 	velocity.y += GRAVITY * delta
 	fly()
@@ -32,3 +31,4 @@ func fly() -> void:
 func die() -> void:
 	anim_sprite.stop()
 	set_physics_process(false)
+	SignalManager.on_plane_died.emit()
