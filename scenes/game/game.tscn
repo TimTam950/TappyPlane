@@ -1,14 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5n25nf751fd5"]
+[gd_scene load_steps=11 format=3 uid="uid://b5n25nf751fd5"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_3trjg"]
 [ext_resource type="Texture2D" uid="uid://f4r0q7v6rblm" path="res://assets/background/rocks_2.png" id="1_afxy7"]
 [ext_resource type="PackedScene" uid="uid://cme1g4mw0lmis" path="res://scenes/plane/plane.tscn" id="2_1egtg"]
+[ext_resource type="PackedScene" uid="uid://dh1w0mvap0xu8" path="res://scenes/parallax_image/parallax_image.tscn" id="2_hrsfa"]
+[ext_resource type="Texture2D" uid="uid://budjey2f1j6ak" path="res://assets/background/sky.png" id="3_0g0e3"]
 [ext_resource type="PackedScene" uid="uid://b0yxun0bswvxp" path="res://scenes/barrier/barrier.tscn" id="3_xe7h4"]
+[ext_resource type="Texture2D" uid="uid://bqe7q42jarlv" path="res://assets/background/clouds_2.png" id="4_337fx"]
+[ext_resource type="PackedScene" uid="uid://bb78503whgx0f" path="res://scenes/game_over_ui/game_over_ui.tscn" id="5_ryf8a"]
+[ext_resource type="Texture2D" uid="uid://brlky3mlx8o48" path="res://assets/background/rocks_1.png" id="5_yulqg"]
+[ext_resource type="PackedScene" uid="uid://cb62o10xhb6oh" path="res://scenes/hud/hud.tscn" id="6_1cy5a"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_3trjg")
 
+[node name="ParallaxBg" type="Node2D" parent="."]
+position = Vector2(0, 427)
+
+[node name="ParallaxImage" parent="ParallaxBg" instance=ExtResource("2_hrsfa")]
+scroll_scale = Vector2(0, 0)
+texture = ExtResource("3_0g0e3")
+
+[node name="ParallaxImage2" parent="ParallaxBg" instance=ExtResource("2_hrsfa")]
+scroll_scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_337fx")
+
+[node name="ParallaxImage3" parent="ParallaxBg" instance=ExtResource("2_hrsfa")]
+scroll_scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_yulqg")
+
+[node name="ParallaxImage4" parent="ParallaxBg" instance=ExtResource("2_hrsfa")]
+scroll_scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_afxy7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="GameOverUi" parent="CanvasLayer" instance=ExtResource("5_ryf8a")]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_1cy5a")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(299, 319)
 texture = ExtResource("1_afxy7")
 

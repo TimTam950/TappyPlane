@@ -4,6 +4,7 @@ class_name Tappy
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimSprite
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 const GRAVITY: float = 1000.0
 const POWER: float = -350.0
@@ -32,3 +33,4 @@ func die() -> void:
 	anim_sprite.stop()
 	set_physics_process(false)
 	SignalManager.on_plane_died.emit()
+	sound.stop()
